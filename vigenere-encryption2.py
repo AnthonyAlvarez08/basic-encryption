@@ -4,9 +4,9 @@ from hashlib import sha1
 def encrypt(message: str, key: str) -> str:
 
     # hash the key to make it more secure
-    key = str(sha1(key.encode()).hexdigest())
+    # key = str(sha1(key.encode()).hexdigest())
 
-    arr = [i for i in message]
+    arr = list(message)
 
     # make a key generator that loops so I can use it for as long as the message
     key_gen = map(str, key * (len(message) // len(key) + 1))
@@ -23,9 +23,9 @@ def encrypt(message: str, key: str) -> str:
 def decrypt(message: str, key: str) -> str:
 
     # hash the key to make it more secure
-    key = str(sha1(key.encode()).hexdigest())
+    # key = str(sha1(key.encode()).hexdigest())
 
-    arr = [i for i in message]
+    arr = list(message)
 
     # make a key generator that loops so I can use it for as long as the message
     key_gen = map(str, key * (len(message) // len(key) + 1))
@@ -40,5 +40,5 @@ def decrypt(message: str, key: str) -> str:
 
 
 # encrypt = input('Hello! would you like to encrypt (e) or decrypt (d) a message?') == 'e'
-KEY = 'hello there'
-print(encrypt('I am a turtle, a beautiful one too', KEY))
+KEY = 'Im excaping to the one place that hasnt been corrupted by capitalism... Sapce!'
+print(encrypt(open('hehe.txt', 'r').read(), KEY))
