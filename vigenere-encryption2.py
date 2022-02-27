@@ -1,10 +1,6 @@
-from hashlib import sha1
 
 # encrypts a message given a key
 def encrypt(message: str, key: str) -> str:
-
-    # hash the key to make it more secure
-    # key = str(sha1(key.encode()).hexdigest())
 
     arr = list(message)
 
@@ -22,9 +18,6 @@ def encrypt(message: str, key: str) -> str:
 # encrypts a message given a key
 def decrypt(message: str, key: str) -> str:
 
-    # hash the key to make it more secure
-    # key = str(sha1(key.encode()).hexdigest())
-
     arr = list(message)
 
     # make a key generator that loops so I can use it for as long as the message
@@ -39,6 +32,17 @@ def decrypt(message: str, key: str) -> str:
 
 
 
-# encrypt = input('Hello! would you like to encrypt (e) or decrypt (d) a message?') == 'e'
-KEY = 'Im excaping to the one place that hasnt been corrupted by capitalism... Sapce!'
-print(encrypt(open('hehe.txt', 'r').read(), KEY))
+key = input('Enter the key you would like to use: ')
+option = input('Hello! would you like to encrypt (e) or decrypt (d) a message? ')
+while not option in 'eEdD':
+    print('Invalid option, please try again')
+    option = input('Hello! would you like to encrypt (e) or decrypt (d) a message? ')
+
+text = open(input('Enter the file name of the input file (place in the same directory as this program): '), 'r').read()
+print('the result will be output to a file called \'output.txt\'')
+
+with open('output.txt', 'w') as fout:
+    if option in 'eE':
+        print(encrypt(text, key), file=fout, end='')
+    else:
+        print(decrypt(text, key), file=fout, end='')
